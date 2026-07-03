@@ -1,0 +1,44 @@
+<!-- 会员中心屏：深色整屏，品牌行 + 大标题 + 套餐三选一 + 权益列表；底部开通条在 membership-cta.wxml -->
+<view wx:if="{{screen==='membership'}}" class="mb-page">
+
+  <!-- 品牌行：皇冠 + PRO 标识 -->
+  <view class="mb-brand">
+    <view class="icon i-crown mb-brand-icon"></view>
+    <text>{{appName}} PRO</text>
+  </view>
+
+  <!-- 大标题固定两行，「无限次」用强调色 -->
+  <view class="mb-title">
+    <view>解锁全部高清原图</view>
+    <view>与<text class="mb-title-hl">无限次</text>解析</view>
+  </view>
+  <view class="mb-desc">升级会员，畅享无水印批量下载与更多专属能力。</view>
+
+  <!-- 套餐卡横排，选中项换粗边框+更亮底色 -->
+  <view class="mb-plans">
+    <view
+      wx:for="{{plans}}"
+      wx:key="id"
+      class="mb-plan {{item.active ? 'mb-plan-on' : ''}}"
+      bindtap="onSelectPlan"
+      data-plan="{{item.id}}"
+    >
+      <!-- 角标悬浮在卡片顶边外侧，水平居中 -->
+      <view wx:if="{{item.tag}}" class="mb-plan-tag">{{item.tag}}</view>
+      <view class="mb-plan-name">{{item.name}}</view>
+      <view class="mb-plan-price">{{item.price}}<text class="mb-plan-unit">{{item.unit}}</text></view>
+      <view class="mb-plan-sub">{{item.sub}}</view>
+    </view>
+  </view>
+
+  <!-- 权益列表卡：每行 对勾圆 + 文案 -->
+  <view class="mb-benefits">
+    <view wx:for="{{benefits}}" wx:key="*this" class="mb-benefit">
+      <view class="mb-benefit-dot">
+        <view class="icon i-check mb-benefit-check"></view>
+      </view>
+      <text class="mb-benefit-txt">{{item}}</text>
+    </view>
+  </view>
+
+</view>

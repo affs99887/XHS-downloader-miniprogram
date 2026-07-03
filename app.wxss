@@ -1,0 +1,33 @@
+/* 全局基础：字体、点击态、共用动画 */
+page {
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #0E3A2A;
+}
+
+/* 等宽字体：进度百分比、短链接这类"数字要对齐"的场景 */
+.mono {
+  font-family: 'Space Mono', 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Courier New', monospace;
+}
+
+/* 点击态：元素加 .tap 提供回弹过渡，再配 hover-class="hv-xx" 按压缩放 */
+.tap { transition: transform .12s ease; }
+.hv-93 { transform: scale(.93); }
+.hv-95 { transform: scale(.95); }
+.hv-96 { transform: scale(.96); }
+.hv-97 { transform: scale(.97); }
+.hv-985 { transform: scale(.985); }
+.hv-99 { transform: scale(.99); }
+
+/* 共用动画：入场位移/淡入、光标闪烁、扫描动效 */
+@keyframes scrIn { from { transform: translateY(20rpx); } to { transform: none; } }
+@keyframes pageIn { from { transform: translateY(36rpx); } to { transform: none; } }
+@keyframes pushIn { from { transform: translateX(56rpx); } to { transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(32rpx); } to { opacity: 1; transform: none; } }
+@keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+@keyframes eb-spin { to { transform: rotate(360deg); } }
+@keyframes eb-scan { 0% { transform: translateY(-8%); } 100% { transform: translateY(560%); } }
+@keyframes eb-ring { 0% { transform: scale(.6); opacity: .5; } 70% { opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }

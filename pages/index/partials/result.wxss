@@ -1,0 +1,377 @@
+/* ============ 解析结果屏（result.wxml + result-bar.wxml 共用一份样式） ============ */
+
+.rs-page {
+  min-height: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 28rpx 36rpx 264rpx;
+  animation: pushIn .34s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* ---- 作者卡 ---- */
+.rs-author {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 20rpx 24rpx;
+}
+.rs-avatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--bg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 30rpx;
+  flex: none;
+}
+.rs-author-info {
+  flex: 1;
+  min-width: 0;
+}
+.rs-author-name {
+  font-size: 27rpx;
+  font-weight: 800;
+}
+.rs-author-sub {
+  font-size: 23rpx;
+  color: #9AA39E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rs-reparse {
+  flex: none;
+  border: 2rpx solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 24rpx;
+  font-weight: 700;
+  padding: 16rpx 26rpx;
+  border-radius: 22rpx;
+}
+
+/* ---- 区头 ---- */
+.rs-sec-head {
+  margin: 44rpx 4rpx 22rpx;
+}
+.rs-sec-title {
+  font-size: 32rpx;
+  font-weight: 900;
+}
+.rs-sec-sub {
+  font-size: 26rpx;
+  color: #9AA39E;
+  font-weight: 700;
+}
+
+/* ---- 图片：三种布局的容器 ---- */
+.rs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12rpx;
+}
+.rs-masonry {
+  column-count: 2;
+  column-gap: 12rpx;
+}
+.rs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* ---- 单张图容器（高度都用 padding-top 百分比撑出来） ---- */
+.rs-item {
+  position: relative;
+  border-radius: 28rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d4dbd6, #aab4af);
+}
+.rs-ratio-34 {
+  padding-top: 133.34%; /* 3:4 */
+}
+.rs-item-m {
+  /* 防止一张图被拆到两列；老安卓内核只认带前缀的旧写法，两行共存互不影响 */
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 12rpx;
+}
+.rs-item-l {
+  border-radius: 32rpx;
+}
+.rs-ratio-1610 {
+  padding-top: 62.5%; /* 16:10 */
+}
+.rs-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 左上序号角标 */
+.rs-badge {
+  position: absolute;
+  left: 14rpx;
+  top: 14rpx;
+  min-width: 36rpx;
+  height: 36rpx;
+  padding: 0 10rpx;
+  border-radius: 18rpx;
+  background: rgba(0, 0, 0, .46);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* 右上选择圆钮：未选中黑半透底白描边，选中换主题色底 + 对勾 */
+.rs-check {
+  position: absolute;
+  right: 12rpx;
+  top: 12rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid rgba(255, 255, 255, .9);
+  background: rgba(0, 0, 0, .34);
+  color: var(--onAccent);
+  font-size: 24rpx;
+  font-weight: 800;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, .25);
+  box-sizing: border-box;
+}
+.rs-check.on {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+/* 列表布局里的大号选择钮：跟随渐变条排版，不再绝对定位 */
+.rs-check-lg {
+  position: static;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  box-shadow: none;
+}
+
+/* 选中时的整图内描边 */
+.rs-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 28rpx;
+  box-shadow: inset 0 0 0 6rpx var(--accent);
+  pointer-events: none;
+}
+.rs-ring-lg {
+  border-radius: 32rpx;
+}
+
+/* 列表布局：底部深色渐变条（文件名 + 选择钮） */
+.rs-lfoot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 112rpx;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .62));
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 20rpx 24rpx;
+  box-sizing: border-box;
+}
+.rs-lname {
+  color: #fff;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.rs-hint {
+  margin-top: 28rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #9AA39E;
+}
+
+/* ---- 文案区 ---- */
+.rs-copy-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 52rpx 4rpx 20rpx;
+}
+.rs-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  border: 2rpx solid var(--accent);
+  background: #fff;
+  color: var(--ink);
+  font-size: 25rpx;
+  font-weight: 700;
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+}
+.rs-copy-icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+.rs-note-card {
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 40rpx;
+  padding: 32rpx;
+}
+.rs-note-title {
+  font-size: 32rpx;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.rs-note-body {
+  display: block;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  line-height: 1.7;
+  color: #46554D;
+  white-space: pre-wrap; /* 让正文里的 \n 换行生效 */
+}
+.rs-tags {
+  margin-top: 28rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+.rs-tag {
+  font-size: 25rpx;
+  font-weight: 600;
+  color: var(--ink);
+  background: rgba(20, 40, 28, .06);
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+}
+
+/* ============ 底部保存操作条 ============ */
+
+.rs-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-top: 2rpx solid var(--line);
+  padding: 24rpx 36rpx 52rpx;
+  display: flex;
+  align-items: center;
+  z-index: 40;
+}
+
+/* 全选槽：默认收起（宽 0 且透明），有选中时加 open 类滑出 */
+.rs-all {
+  flex: none;
+  overflow: hidden;
+  height: 104rpx;
+  max-width: 0;
+  margin-right: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  transition: max-width .32s cubic-bezier(.22, .61, .36, 1), margin-right .32s cubic-bezier(.22, .61, .36, 1), opacity .26s ease;
+}
+.rs-all.open {
+  max-width: 92rpx;
+  margin-right: 28rpx;
+  opacity: 1;
+}
+/* 方框：全选时 ✓、部分选中时 –（字符由 WXML 三元决定），有选中就换主题色底 */
+.rs-all-box {
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 800;
+  border: 3rpx solid var(--line);
+  background: transparent;
+  color: var(--onAccent);
+  flex: none;
+  box-sizing: border-box;
+}
+.rs-all-box.on {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.rs-all-txt {
+  font-size: 21rpx;
+  font-weight: 700;
+  color: var(--inkSoft);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 保存主按钮 */
+.rs-save {
+  flex: 1;
+  background: var(--accent);
+  color: var(--onAccent);
+  font-weight: 800;
+  font-size: 31rpx;
+  height: 104rpx;
+  border-radius: 32rpx;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 进度覆盖层四状态：idle 隐藏无过渡；running 显示且宽度平滑推进；done 保持显示；fade 慢慢淡出 */
+.rs-prog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, .34);
+  opacity: 0;
+}
+.rs-prog.st-running {
+  opacity: 1;
+  transition: width .12s linear, opacity .2s ease;
+}
+.rs-prog.st-done {
+  opacity: 1;
+}
+.rs-prog.st-fade {
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.rs-save-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+.rs-save-icon {
+  width: 36rpx;
+  height: 36rpx;
+}

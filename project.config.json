@@ -1,0 +1,18 @@
+{
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "XHS-downloader-miniprogram",
+  "libVersion": "3.7.12",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "ignoreUploadUnusedFiles": true
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

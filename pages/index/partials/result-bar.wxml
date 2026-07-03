@@ -1,0 +1,21 @@
+<!-- 结果屏底部保存操作条：左「全选」槽（有选中时才展开）+ 右保存主按钮（带进度覆盖层） -->
+<view wx:if="{{screen==='result'}}" class="rs-bar">
+
+  <!-- 全选槽：selN>0 时加 open 类展开，靠 max-width/margin/opacity 过渡实现滑出 -->
+  <view class="rs-all {{selN > 0 ? 'open' : ''}} tap" hover-class="hv-93" bindtap="onSelectAll">
+    <view class="rs-all-box {{selN > 0 ? 'on' : ''}}">{{allSel ? '✓' : (selN > 0 ? '–' : '')}}</view>
+    <text class="rs-all-txt">全选</text>
+  </view>
+
+  <!-- 保存主按钮 -->
+  <view class="rs-save tap" hover-class="hv-985" bindtap="onBulkSave">
+    <!-- 进度覆盖层：宽度由 dl.width 驱动，透明度/过渡按 dl.state 切换 -->
+    <view class="rs-prog st-{{dl.state}}" style="width:{{dl.width}}"></view>
+    <view class="rs-save-inner">
+      <view wx:if="{{dl.checked}}" class="icon i-check rs-save-icon"></view>
+      <view wx:else class="icon i-download rs-save-icon"></view>
+      <text>{{dl.label}}</text>
+    </view>
+  </view>
+
+</view>

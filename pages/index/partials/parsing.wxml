@@ -1,0 +1,42 @@
+<!-- 解析中屏：文档扫描动效 + 进度条 + 四步任务清单 -->
+<view wx:if="{{screen==='parsing'}}" class="ps-page">
+  <view class="ps-body">
+
+    <!-- 文档扫描动效：白色小文档卡 + 顶部来回扫描条 + 两圈向外扩散的圆环 -->
+    <view class="ps-anim">
+      <view class="ps-ring"></view>
+      <view class="ps-ring ps-ring2"></view>
+      <view class="ps-doc">
+        <view class="ps-doc-head"></view>
+        <view class="ps-doc-line ps-l1"></view>
+        <view class="ps-doc-line ps-l2"></view>
+        <view class="ps-doc-line ps-l3"></view>
+        <view class="ps-doc-scan"></view>
+      </view>
+    </view>
+
+    <view class="ps-url mono">{{parse.url}}</view>
+
+    <!-- 进度区：左步骤文案，右百分比，下面是细进度条 -->
+    <view class="ps-prog">
+      <view class="ps-prog-head">
+        <view class="ps-prog-step">{{parse.step}}</view>
+        <view class="ps-prog-pct mono">{{parse.pct}}%</view>
+      </view>
+      <view class="ps-track">
+        <view class="ps-bar" style="width:{{parse.pct}}%"></view>
+      </view>
+    </view>
+
+    <!-- 步骤清单：完成显示对勾，进行中显示旋转小圆环 -->
+    <view class="ps-steps">
+      <view class="ps-step-row" wx:for="{{parse.steps}}" wx:key="folio">
+        <view class="ps-step-folio mono {{item.done || item.active ? 'ps-on' : ''}}">{{item.folio}}</view>
+        <view class="ps-step-label {{item.done || item.active ? 'ps-on' : ''}}">{{item.label}}</view>
+        <view wx:if="{{item.done}}" class="ps-step-check">✓</view>
+        <view wx:if="{{item.active}}" class="ps-step-spin"></view>
+      </view>
+    </view>
+
+  </view>
+</view>

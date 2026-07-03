@@ -1,0 +1,75 @@
+<!-- 单页状态机：所有屏幕都在这一个页面里，靠 data.screen 切换。
+     不用原生多页 tabBar 的原因：底部胶囊 tab 有跨屏连贯的展开动画，拆多页切换时组件重建、动画必断。 -->
+<view class="app {{chromeDark ? 'app--dark' : 'app--light'}}" style="{{themeStyle}}">
+
+  <!-- 顶部 chrome：真实状态栏高度（px）+ 自定义导航条，背景连成一块避免出现接缝 -->
+  <view class="chrome">
+    <view style="height:{{statusBarH}}px"></view>
+    <view class="nav" style="height:{{navH}}px">
+      <view wx:if="{{showBack}}" class="nav-back tap" hover-class="hv-93" bindtap="onBack">
+        <view class="icon i-back nav-back-ic"></view>
+      </view>
+      <block wx:else>
+        <!-- 记录页是"大标题 + 统计副行"，其余屏幕是普通标题（首页多一颗强调色圆点） -->
+        <view wx:if="{{navLarge}}" class="nav-large">
+          <text class="nav-large-title">解析记录</text>
+          <text class="nav-large-sub">{{histSummary}}</text>
+        </view>
+        <view wx:elif="{{navTitle}}" class="nav-title-row">
+          <view wx:if="{{screen === 'home'}}" class="nav-dot"></view>
+          <text class="nav-title">{{navTitle}}</text>
+        </view>
+      </block>
+      <!-- 有返回键时标题绝对居中，避免被返回键挤偏 -->
+      <view wx:if="{{showBack}}" class="nav-center">{{navTitle}}</view>
+    </view>
+  </view>
+
+  <!-- 内容滚动区：切屏靠 wx:if 重新挂载，让每屏的入场动画重放 -->
+  <scroll-view
+    class="host"
+    scroll-y
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+    scroll-top="{{scrollTop}}"
+    style="top:{{chromeH}}px"
+  >
+    <include src="./partials/home.wxml" />
+    <include src="./partials/parsing.wxml" />
+    <include src="./partials/result.wxml" />
+    <include src="./partials/history.wxml" />
+    <include src="./partials/profile.wxml" />
+    <include src="./partials/membership.wxml" />
+  </scroll-view>
+
+  <!-- 悬浮胶囊 tab 栏：只在三个主屏显示；激活项文字用 max-width 过渡展开 -->
+  <view wx:if="{{screen === 'home' || screen === 'history' || screen === 'profile'}}" class="tabbar">
+    <view class="tabbar-pill">
+      <view class="tb-item {{tab === 'home' ? 'tb-item--on' : ''}}" hover-class="hv-93" bindtap="onSwitchTab" data-tab="home">
+        <view class="icon i-home tb-ic"></view>
+        <view class="tb-label">首页</view>
+      </view>
+      <view class="tb-item {{tab === 'history' ? 'tb-item--on' : ''}}" hover-class="hv-93" bindtap="onSwitchTab" data-tab="history">
+        <view class="icon i-clock tb-ic"></view>
+        <view class="tb-label">记录</view>
+      </view>
+      <view class="tb-item {{tab === 'profile' ? 'tb-item--on' : ''}}" hover-class="hv-93" bindtap="onSwitchTab" data-tab="profile">
+        <view class="icon i-user tb-ic"></view>
+        <view class="tb-label">我的</view>
+      </view>
+    </view>
+  </view>
+
+  <include src="./partials/result-bar.wxml" />
+  <include src="./partials/membership-cta.wxml" />
+  <include src="./partials/viewer.wxml" />
+
+  <!-- 居中提示：样式定制（深底 + 对勾），所以不用 wx.showToast -->
+  <view wx:if="{{toast.show}}" class="toast-wrap">
+    <view class="toast">
+      <!-- 失败类提示不配对勾，避免图标和文字含义打架 -->
+      <view wx:if="{{toast.ok}}" class="icon i-check toast-ic"></view>
+      <text>{{toast.text}}</text>
+    </view>
+  </view>
+</view>

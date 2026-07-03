@@ -1,0 +1,78 @@
+<!-- 解析结果屏：作者卡 + 图片区（三种布局）+ 文案区 -->
+<view wx:if="{{screen==='result'}}" class="rs-page">
+
+  <!-- 作者卡 -->
+  <view class="rs-author">
+    <view class="rs-avatar">{{note.avatarChar}}</view>
+    <view class="rs-author-info">
+      <view class="rs-author-name">{{note.author}}</view>
+      <view class="rs-author-sub">来自小红书笔记 · 解析成功</view>
+    </view>
+    <view class="rs-reparse" bindtap="onReParse">重新解析</view>
+  </view>
+
+  <!-- 图片区头 -->
+  <view class="rs-sec-head">
+    <text class="rs-sec-title">图片</text>
+    <text class="rs-sec-sub"> · 共 {{imgs.length}} 张</text>
+  </view>
+
+  <!-- 布局一：三列网格 -->
+  <view wx:if="{{layout==='grid'}}" class="rs-grid">
+    <view wx:for="{{imgs}}" wx:key="idx" class="rs-item rs-ratio-34 tap" hover-class="hv-985"
+          bindtap="onOpenViewer" data-index="{{index}}">
+      <image class="rs-img" src="{{item.src}}" mode="aspectFill" lazy-load></image>
+      <view class="rs-badge">{{item.idx}}</view>
+      <view class="rs-check {{item.sel ? 'on' : ''}}" catchtap="onToggleImg" data-index="{{index}}">{{item.sel ? '✓' : ''}}</view>
+      <!-- 选中时的内描边，单独一层且不绑事件，避免挡住点击 -->
+      <view wx:if="{{item.sel}}" class="rs-ring"></view>
+    </view>
+  </view>
+
+  <!-- 布局二：两列瀑布流，每张比例不同，用 padding-top 撑高（padding 百分比按宽度算） -->
+  <view wx:elif="{{layout==='masonry'}}" class="rs-masonry">
+    <view wx:for="{{imgs}}" wx:key="idx" class="rs-item rs-item-m tap" hover-class="hv-985"
+          style="padding-top:{{item.padTop}}%"
+          bindtap="onOpenViewer" data-index="{{index}}">
+      <image class="rs-img" src="{{item.src}}" mode="aspectFill" lazy-load></image>
+      <view class="rs-badge">{{item.idx}}</view>
+      <view class="rs-check {{item.sel ? 'on' : ''}}" catchtap="onToggleImg" data-index="{{index}}">{{item.sel ? '✓' : ''}}</view>
+      <view wx:if="{{item.sel}}" class="rs-ring"></view>
+    </view>
+  </view>
+
+  <!-- 布局三：纵向大图列表，底部压深色渐变条 -->
+  <view wx:elif="{{layout==='list'}}" class="rs-list">
+    <view wx:for="{{imgs}}" wx:key="idx" class="rs-item rs-item-l rs-ratio-1610 tap" hover-class="hv-99"
+          bindtap="onOpenViewer" data-index="{{index}}">
+      <image class="rs-img" src="{{item.src}}" mode="aspectFill" lazy-load></image>
+      <view class="rs-lfoot">
+        <text class="rs-lname">原图 0{{item.idx}} · JPG</text>
+        <view class="rs-check rs-check-lg {{item.sel ? 'on' : ''}}" catchtap="onToggleImg" data-index="{{index}}">{{item.sel ? '✓' : ''}}</view>
+      </view>
+      <view wx:if="{{item.sel}}" class="rs-ring rs-ring-lg"></view>
+    </view>
+  </view>
+
+  <view class="rs-hint">点击图片可查看大图并单独保存</view>
+
+  <!-- 文案区头 -->
+  <view class="rs-sec-head rs-copy-head">
+    <text class="rs-sec-title">文案</text>
+    <view class="rs-copy-btn tap" hover-class="hv-96" bindtap="onCopyText">
+      <view class="icon i-copy rs-copy-icon"></view>
+      <text>一键复制</text>
+    </view>
+  </view>
+
+  <!-- 文案卡 -->
+  <view class="rs-note-card">
+    <view class="rs-note-title">{{note.title}}</view>
+    <!-- 用 text 组件让正文里的 \n 换行生效 -->
+    <text class="rs-note-body">{{note.body}}</text>
+    <view class="rs-tags">
+      <text wx:for="{{tags}}" wx:key="*this" class="rs-tag">#{{item}}</text>
+    </view>
+  </view>
+
+</view>

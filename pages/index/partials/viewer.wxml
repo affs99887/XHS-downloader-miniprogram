@@ -1,0 +1,26 @@
+<!-- 大图预览浮层：盖住整屏（含导航区）的黑底查看器 -->
+<view wx:if="{{viewer.open}}" class="vw-mask">
+  <!-- 头部：顶部留白 = 真实状态栏高度（设备 px，只能内联写）+ 14rpx 额外间距 -->
+  <view class="vw-head" style="padding-top:calc({{statusBarH}}px + 14rpx)">
+    <view class="vw-head-btn" bindtap="onViewerClose">
+      <view class="icon i-close vw-close-ic"></view>
+    </view>
+    <view class="vw-pos">{{viewer.pos}} / {{viewer.count}}</view>
+    <view class="vw-head-btn vw-sel {{viewer.sel ? 'vw-sel-on' : ''}}" bindtap="onViewerToggleSel">{{viewer.sel ? '✓' : ''}}</view>
+  </view>
+
+  <!-- 中部：图片铺满居中，左右各 34% 宽的透明点击区用来翻页 -->
+  <view class="vw-stage">
+    <image class="vw-img" src="{{viewer.src}}" mode="aspectFit"></image>
+    <view class="vw-zone vw-zone-l" bindtap="onViewerPrev"></view>
+    <view class="vw-zone vw-zone-r" bindtap="onViewerNext"></view>
+  </view>
+
+  <!-- 底部：保存按钮 -->
+  <view class="vw-foot">
+    <view class="vw-save tap" hover-class="hv-985" bindtap="onViewerSave">
+      <view class="icon i-download vw-save-ic"></view>
+      <text>{{viewer.saveLabel}}</text>
+    </view>
+  </view>
+</view>

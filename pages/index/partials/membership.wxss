@@ -1,0 +1,162 @@
+/* 会员中心屏（含底部开通条），类名前缀 mb- */
+
+/* 底部 268rpx 内边距是给固定在屏幕底部的开通条留出空间，避免权益列表被盖住 */
+.mb-page {
+  min-height: 100%;
+  background: var(--bg);
+  color: #fff;
+  padding: 32rpx 40rpx 268rpx;
+  animation: pushIn .34s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* 品牌行 */
+.mb-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14rpx;
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 28rpx;
+}
+.mb-brand-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 大标题 */
+.mb-title {
+  margin-top: 28rpx;
+  font-size: 60rpx;
+  font-weight: 900;
+  line-height: 1.18;
+}
+.mb-title-hl {
+  color: var(--accent);
+}
+.mb-desc {
+  margin-top: 20rpx;
+  font-size: 27rpx;
+  color: var(--mint);
+}
+
+/* 套餐卡横排 */
+.mb-plans {
+  margin-top: 44rpx;
+  display: flex;
+  gap: 20rpx;
+}
+.mb-plan {
+  flex: 1;
+  position: relative;
+  border: 2rpx solid rgba(255, 255, 255, .16);
+  border-radius: 36rpx;
+  background: rgba(255, 255, 255, .035);
+  padding: 32rpx 16rpx 28rpx;
+  text-align: center;
+}
+/* 选中态：边框加粗到 4rpx，卡片会比未选中略大 2rpx，属预期效果 */
+.mb-plan-on {
+  border: 4rpx solid var(--accent);
+  background: rgba(255, 255, 255, .10);
+}
+.mb-plan-tag {
+  position: absolute;
+  top: -18rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--onAccent);
+  font-size: 20rpx;
+  font-weight: 800;
+  padding: 6rpx 18rpx;
+  border-radius: 999rpx;
+  white-space: nowrap;
+}
+.mb-plan-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--mint);
+}
+.mb-plan-price {
+  margin-top: 14rpx;
+  font-size: 48rpx;
+  font-weight: 900;
+  color: #fff;
+}
+.mb-plan-unit {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--mint);
+}
+.mb-plan-sub {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--mint);
+}
+
+/* 权益列表卡 */
+.mb-benefits {
+  margin-top: 48rpx;
+  background: rgba(255, 255, 255, .05);
+  border: 2rpx solid rgba(255, 255, 255, .1);
+  border-radius: 40rpx;
+  padding: 12rpx 32rpx;
+}
+/* 每行都带下分割线（含最后一行），线到卡片底边还留有内边距 */
+.mb-benefit {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid rgba(255, 255, 255, .07);
+}
+.mb-benefit-dot {
+  flex: none;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--onAccent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mb-benefit-check {
+  width: 26rpx;
+  height: 26rpx;
+}
+.mb-benefit-txt {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* 底部开通条：固定贴底，盖在滚动内容之上 */
+.mb-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: var(--bg2);
+  border-top: 2rpx solid rgba(255, 255, 255, .08);
+  padding: 24rpx 40rpx 52rpx;
+}
+.mb-cta-btn {
+  padding: 30rpx;
+  border-radius: 32rpx;
+  background: var(--accent);
+  color: var(--onAccent);
+  font-size: 32rpx;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+.mb-cta-note {
+  margin-top: 18rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--mint);
+}

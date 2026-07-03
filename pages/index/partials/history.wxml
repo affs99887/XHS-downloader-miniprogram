@@ -1,0 +1,60 @@
+<!-- 解析记录屏：筛选 chips + 按时间分组的记录卡片列表 -->
+<view wx:if="{{screen==='history'}}" class="hs-page">
+
+  <!-- 筛选 chips：全部 / 图文 / 视频，选中项换 accent 配色 -->
+  <view class="hs-chips">
+    <view
+      class="hs-chip tap {{hist.filter==='all' ? 'hs-chip-on' : ''}}"
+      hover-class="hv-95"
+      bindtap="onSetHistFilter"
+      data-filter="all"
+    >全部</view>
+    <view
+      class="hs-chip tap {{hist.filter==='image' ? 'hs-chip-on' : ''}}"
+      hover-class="hv-95"
+      bindtap="onSetHistFilter"
+      data-filter="image"
+    >图文</view>
+    <view
+      class="hs-chip tap {{hist.filter==='video' ? 'hs-chip-on' : ''}}"
+      hover-class="hv-95"
+      bindtap="onSetHistFilter"
+      data-filter="video"
+    >视频</view>
+  </view>
+
+  <!-- 按日期分组：组头（标签 + 条数），组内一列卡片 -->
+  <view class="hs-group" wx:for="{{hist.groups}}" wx:for-item="g" wx:key="label">
+    <view class="hs-group-hd">
+      <view class="hs-group-label">{{g.label}}</view>
+      <view class="hs-group-count">{{g.count}}</view>
+    </view>
+    <view class="hs-list">
+      <view
+        class="hs-card"
+        wx:for="{{g.items}}"
+        wx:key="id"
+        bindtap="onOpenHistItem"
+      >
+        <!-- 左侧封面：渐变占位打底，图片加载后盖上去 -->
+        <view class="hs-cover">
+          <image class="hs-cover-img" src="{{item.cover}}" mode="aspectFill" lazy-load></image>
+          <view class="hs-badge">{{item.imgsCount}} 张</view>
+          <!-- 视频类记录：右上角播放角标，三角形用 border 画（宽高为 0、只留左边框） -->
+          <view wx:if="{{item.video}}" class="hs-play">
+            <view class="hs-play-tri"></view>
+          </view>
+        </view>
+        <!-- 右侧信息：标题两行截断 + 类型小方标 + 时间 -->
+        <view class="hs-info">
+          <view class="hs-title">{{item.title}}</view>
+          <view class="hs-meta">
+            <view class="hs-type">{{item.type}}</view>
+            <view class="hs-time">{{item.time}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

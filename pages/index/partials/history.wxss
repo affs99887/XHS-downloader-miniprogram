@@ -1,0 +1,173 @@
+/* 解析记录屏（前缀 hs-） */
+
+.hs-page {
+  min-height: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 32rpx 36rpx 220rpx;
+  animation: pageIn .36s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* 筛选 chips 行 */
+.hs-chips {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 4rpx;
+}
+
+.hs-chip {
+  font-size: 26rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 14rpx 32rpx;
+  border-radius: 1998rpx;
+  background: #fff;
+  color: var(--ink);
+  border: 2rpx solid var(--line);
+}
+
+.hs-chip-on {
+  background: var(--accent);
+  color: var(--onAccent);
+  border-color: var(--accent);
+}
+
+/* 日期分组 */
+.hs-group {
+  margin-top: 44rpx;
+}
+
+.hs-group-hd {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  margin-bottom: 22rpx;
+}
+
+.hs-group-label {
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.hs-group-count {
+  font-size: 22rpx;
+  color: #9AA39E;
+}
+
+.hs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+}
+
+/* 记录卡片：左封面 + 右信息 */
+.hs-card {
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 40rpx;
+  padding: 22rpx;
+  display: flex;
+  gap: 26rpx;
+  box-shadow: 0 20rpx 44rpx -36rpx rgba(0, 0, 0, .45);
+}
+
+/* 封面：底色是渐变占位，图片没加载完时露出来 */
+.hs-cover {
+  width: 156rpx;
+  height: 160rpx;
+  flex: none;
+  border-radius: 28rpx;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #d4dbd6, #aab4af);
+}
+
+.hs-cover-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 左下角张数角标 */
+.hs-badge {
+  position: absolute;
+  left: 12rpx;
+  bottom: 12rpx;
+  height: 38rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+  border-radius: 18rpx;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  font-size: 21rpx;
+  font-weight: 700;
+}
+
+/* 右上角播放角标（仅视频记录显示） */
+.hs-play {
+  position: absolute;
+  right: 12rpx;
+  top: 12rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 用 border 画的白色实心三角：上下边框透明、左边框白色 */
+.hs-play-tri {
+  width: 0;
+  height: 0;
+  border-left: 14rpx solid #fff;
+  border-top: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+  margin-left: 4rpx;
+}
+
+/* 右侧信息列，纵向居中 */
+.hs-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 标题两行截断 */
+.hs-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hs-meta {
+  margin-top: 14rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 类型小方标（图文 / 视频） */
+.hs-type {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(20, 40, 28, .06);
+  padding: 6rpx 16rpx;
+  border-radius: 14rpx;
+}
+
+.hs-time {
+  font-size: 24rpx;
+  color: #9AA39E;
+}

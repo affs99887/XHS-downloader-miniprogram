@@ -1,0 +1,205 @@
+/* 我的（profile）屏幕 */
+.pf-page {
+  min-height: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 16rpx 36rpx 220rpx;
+  animation: pageIn .36s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* ===== 头像行 ===== */
+.pf-user {
+  display: flex;
+  align-items: center;
+  gap: 28rpx;
+  margin-top: 0;
+}
+
+.pf-avatar {
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--bg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: 900;
+  flex: none;
+}
+
+.pf-user-info {
+  flex: 1;
+}
+
+.pf-name {
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.pf-badge {
+  margin-top: 12rpx;
+  display: inline-flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #7C857F;
+  background: rgba(20, 40, 28, .06);
+  padding: 8rpx 22rpx;
+  border-radius: 999rpx;
+}
+
+/* ===== 开通会员横幅 ===== */
+.pf-banner {
+  margin-top: 36rpx;
+  background: var(--bg);
+  border-radius: 44rpx;
+  padding: 36rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 内容层压在柔光圆上面 */
+.pf-banner-body {
+  position: relative;
+  z-index: 2;
+}
+
+.pf-banner-title {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 30rpx;
+}
+
+.pf-banner-crown {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.pf-banner-desc {
+  display: block;
+  margin-top: 18rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 800;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
+.pf-banner-cta {
+  margin-top: 28rpx;
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  background: var(--accent);
+  color: var(--onAccent);
+  font-weight: 800;
+  font-size: 26rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 999rpx;
+}
+
+.pf-banner-arrow {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+/* 右上角柔光圆装饰 */
+.pf-banner-glow {
+  position: absolute;
+  right: -68rpx;
+  top: -68rpx;
+  width: 296rpx;
+  height: 296rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .13), transparent 70%);
+}
+
+/* ===== 三格统计 ===== */
+.pf-stats {
+  margin-top: 32rpx;
+  display: flex;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 32rpx 0;
+}
+
+.pf-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.pf-stat-mid {
+  border-left: 2rpx solid var(--line);
+  border-right: 2rpx solid var(--line);
+}
+
+.pf-stat-num {
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.pf-stat-label {
+  font-size: 23rpx;
+  color: #9AA39E;
+  margin-top: 6rpx;
+}
+
+/* ===== 菜单列表 ===== */
+.pf-menu {
+  margin-top: 32rpx;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  overflow: hidden;
+}
+
+.pf-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 30rpx 32rpx;
+  border-bottom: 2rpx solid var(--line);
+}
+
+.pf-menu-item-last {
+  border-bottom: none;
+}
+
+.pf-menu-icon {
+  width: 38rpx;
+  height: 38rpx;
+  color: var(--ink);
+}
+
+.pf-menu-title {
+  flex: 1;
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.pf-menu-val {
+  font-size: 26rpx;
+  color: #9AA39E;
+}
+
+/* 右尖角原始比例 7:13，宽 14rpx 对应高 26rpx */
+.pf-menu-chev {
+  width: 14rpx;
+  height: 26rpx;
+  color: #c8cfca;
+}
+
+/* ===== 底部版本号 ===== */
+.pf-version {
+  margin-top: 36rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #bcc3be;
+}

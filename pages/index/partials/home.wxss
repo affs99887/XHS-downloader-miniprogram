@@ -1,0 +1,191 @@
+/* 首页 */
+.home-page {
+  min-height: 100%;
+  background: var(--bg);
+  color: #fff;
+  padding: 32rpx 44rpx 240rpx;
+  box-sizing: border-box;
+}
+
+.home-kicker {
+  font-size: 24rpx;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--mint);
+}
+
+.home-title {
+  margin: 28rpx 0 0;
+  font-size: 84rpx;
+  line-height: 1.06;
+  font-weight: 900;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+/* min-height 撑住行高：拼音打完、汉字还没上屏的瞬间行内容为空，不让整行塌陷跳动 */
+.home-title-line {
+  min-height: 1.05em;
+  white-space: nowrap;
+}
+.home-title-line2 {
+  color: var(--accent);
+}
+/* 正在输入的拼音：下划线弱化显示 */
+.home-title-comp {
+  text-decoration: underline;
+  text-underline-offset: 8rpx;
+  opacity: .7;
+  font-weight: 800;
+}
+/* 打字光标竖条，颜色跟随所在行文字色 */
+.home-cursor {
+  display: inline-block;
+  width: 6rpx;
+  height: .78em;
+  background: currentColor;
+  margin-left: 6rpx;
+  vertical-align: -2rpx;
+  border-radius: 2rpx;
+  animation: blink 1.05s step-end infinite;
+}
+
+.home-sub {
+  margin: 28rpx 0 0;
+  font-size: 30rpx;
+  line-height: 1.55;
+  color: var(--mint);
+  max-width: 592rpx;
+}
+
+.home-card {
+  margin-top: 44rpx;
+  background: #fff;
+  border-radius: 52rpx;
+  padding: 36rpx;
+  box-shadow: 0 44rpx 88rpx -48rpx rgba(0, 0, 0, .5);
+}
+.home-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.home-card-label {
+  font-size: 26rpx;
+  font-weight: 800;
+  color: var(--ink);
+}
+.home-card-hint {
+  font-size: 23rpx;
+  color: #9AA39E;
+}
+
+/* 已粘贴态：浅底框 + 两行截断文本 + 清除钮 */
+.home-pasted {
+  display: flex;
+  gap: 20rpx;
+  align-items: flex-start;
+  background: rgba(20, 40, 28, .05);
+  border: 2rpx solid var(--line);
+  border-radius: 32rpx;
+  padding: 24rpx;
+}
+.home-pasted-text {
+  flex: 1;
+  font-size: 25rpx;
+  line-height: 1.5;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.home-pasted-clear {
+  flex: none;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: rgba(20, 40, 28, .12);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  line-height: 1;
+}
+
+/* 未粘贴态：占位文案 + 粘贴按钮 */
+.home-empty {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  background: rgba(20, 40, 28, .05);
+  border: 2rpx solid var(--line);
+  border-radius: 32rpx;
+  padding: 12rpx 12rpx 12rpx 28rpx;
+}
+.home-empty-ph {
+  flex: 1;
+  font-size: 26rpx;
+  color: #9AA39E;
+}
+.home-paste-btn {
+  flex: none;
+  background: var(--accent);
+  color: var(--onAccent);
+  font-weight: 800;
+  font-size: 26rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 24rpx;
+}
+
+.home-parse-btn {
+  margin-top: 28rpx;
+  border-radius: 36rpx;
+  background: var(--accent);
+  color: var(--onAccent);
+  font-size: 34rpx;
+  font-weight: 800;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+.home-parse-arrow {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.home-chips {
+  margin-top: 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  justify-content: center;
+}
+.home-chip {
+  background: rgba(191, 233, 210, .14);
+  color: var(--mint);
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid rgba(191, 233, 210, .2);
+}
+
+.home-history {
+  margin-top: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  color: var(--mint);
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.home-history-chev {
+  width: 14rpx;
+  height: 24rpx;
+}

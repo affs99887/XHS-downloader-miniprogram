@@ -1,0 +1,5 @@
+<!-- 会员中心底部开通条：固定贴底，样式在 membership.wxss -->
+<view wx:if="{{screen==='membership'}}" class="mb-cta">
+  <view class="mb-cta-btn tap" hover-class="hv-99" bindtap="onBuy">{{buyLabel}}</view>
+  <view class="mb-cta-note">开通即同意《会员服务协议》· 可随时取消续费</view>
+</view>

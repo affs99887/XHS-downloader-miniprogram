@@ -1,0 +1,84 @@
+<!-- 我的（profile）屏幕 -->
+<view wx:if="{{screen==='profile'}}" class="pf-page">
+
+  <!-- 头像行：渐变圆头像 + 昵称 + 会员等级胶囊 -->
+  <view class="pf-user">
+    <view class="pf-avatar">薯</view>
+    <view class="pf-user-info">
+      <view class="pf-name">微信用户</view>
+      <view class="pf-badge">普通会员</view>
+    </view>
+  </view>
+
+  <!-- 开通会员横幅，整块可点 -->
+  <view class="pf-banner tap" hover-class="hv-99" bindtap="onOpenMembership">
+    <view class="pf-banner-body">
+      <view class="pf-banner-title">
+        <view class="icon i-crown pf-banner-crown"></view>
+        开通会员
+      </view>
+      <!-- 固定两行大字：WXML 文本里写 \n 不会换行，所以拆成两个 view -->
+      <view class="pf-banner-desc">
+        <view>解锁无限解析</view>
+        <view>与批量高清原图下载</view>
+      </view>
+      <view class="pf-banner-cta">
+        立即查看
+        <view class="icon i-arrow-r pf-banner-arrow"></view>
+      </view>
+    </view>
+    <!-- 右上角柔光圆，纯装饰 -->
+    <view class="pf-banner-glow"></view>
+  </view>
+
+  <!-- 三格统计 -->
+  <view class="pf-stats">
+    <view class="pf-stat">
+      <view class="pf-stat-num">23</view>
+      <view class="pf-stat-label">解析次数</view>
+    </view>
+    <view class="pf-stat pf-stat-mid">
+      <view class="pf-stat-num">186</view>
+      <view class="pf-stat-label">下载张数</view>
+    </view>
+    <view class="pf-stat">
+      <view class="pf-stat-num">12</view>
+      <view class="pf-stat-label">收藏</view>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="pf-menu">
+    <view class="pf-menu-item" bindtap="onSoon">
+      <view class="icon i-download pf-menu-icon"></view>
+      <view class="pf-menu-title">我的下载</view>
+      <view class="pf-menu-val">186</view>
+      <view class="icon i-chev-r pf-menu-chev"></view>
+    </view>
+    <view class="pf-menu-item" bindtap="onSoon">
+      <view class="icon i-heart pf-menu-icon"></view>
+      <view class="pf-menu-title">我的收藏</view>
+      <view class="pf-menu-val">12</view>
+      <view class="icon i-chev-r pf-menu-chev"></view>
+    </view>
+    <view class="pf-menu-item" bindtap="onClearCache">
+      <view class="icon i-trash pf-menu-icon"></view>
+      <view class="pf-menu-title">清除缓存</view>
+      <view class="pf-menu-val">28.6 MB</view>
+      <view class="icon i-chev-r pf-menu-chev"></view>
+    </view>
+    <view class="pf-menu-item" bindtap="onSoon">
+      <view class="icon i-help pf-menu-icon"></view>
+      <view class="pf-menu-title">帮助与反馈</view>
+      <view class="icon i-chev-r pf-menu-chev"></view>
+    </view>
+    <view class="pf-menu-item pf-menu-item-last" bindtap="onSoon">
+      <view class="icon i-info pf-menu-icon"></view>
+      <view class="pf-menu-title">关于{{appName}}</view>
+      <view class="icon i-chev-r pf-menu-chev"></view>
+    </view>
+  </view>
+
+  <!-- 底部版本号 -->
+  <view class="pf-version">{{appName}} v1.0.0</view>
+</view>

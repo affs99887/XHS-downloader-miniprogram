@@ -1,0 +1,51 @@
+<!-- 首页：粘贴链接入口 -->
+<view wx:if="{{screen==='home'}}" class="home-page">
+  <!-- decode 开启后 &nbsp; 才会被转成不换行空格（WXML 默认不解码实体） -->
+  <view class="home-kicker"><text decode="{{true}}">NOTE&nbsp;EXTRACTOR</text></view>
+
+  <!-- 打字机大标题：l1/l2 是已定型汉字，compL1/compL2 是正在输入的拼音，cur1/cur2 控制光标在哪一行 -->
+  <view class="home-title">
+    <view class="home-title-line">{{disp.l1}}<text class="home-title-comp">{{disp.compL1}}</text><view wx:if="{{disp.cur1}}" class="home-cursor"></view></view>
+    <view class="home-title-line home-title-line2">{{disp.l2}}<text class="home-title-comp">{{disp.compL2}}</text><view wx:if="{{disp.cur2}}" class="home-cursor"></view></view>
+  </view>
+
+  <view class="home-sub">粘贴链接，自动提取无水印高清原图与完整文案，整理进你的素材盒子。</view>
+
+  <!-- 白色输入卡片 -->
+  <view class="home-card">
+    <view class="home-card-head">
+      <view class="home-card-label">笔记链接</view>
+      <view class="home-card-hint">支持链接 / 分享口令</view>
+    </view>
+
+    <!-- 已粘贴：显示链接文本 + 清除圆钮 -->
+    <view wx:if="{{pasted}}" class="home-pasted">
+      <text class="home-pasted-text">{{pasted}}</text>
+      <view class="home-pasted-clear" catchtap="onClearPaste">×</view>
+    </view>
+
+    <!-- 未粘贴：占位文案 + 粘贴按钮 -->
+    <view wx:else class="home-empty">
+      <view class="home-empty-ph">粘贴小红书分享链接 / 口令</view>
+      <view class="home-paste-btn tap" hover-class="hv-96" bindtap="onPaste">粘贴</view>
+    </view>
+
+    <view class="home-parse-btn tap" hover-class="hv-985" bindtap="onStartParse">
+      开始解析
+      <view class="icon i-arrow-r home-parse-arrow"></view>
+    </view>
+  </view>
+
+  <!-- 功能 chips -->
+  <view class="home-chips">
+    <view class="home-chip">无水印</view>
+    <view class="home-chip">原图高清</view>
+    <view class="home-chip">文案提取</view>
+    <view class="home-chip">批量保存</view>
+  </view>
+
+  <view class="home-history" bindtap="onGoHistory">
+    查看历史记录
+    <view class="icon i-chev-r home-history-chev"></view>
+  </view>
+</view>

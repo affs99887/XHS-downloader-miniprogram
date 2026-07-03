@@ -1,0 +1,146 @@
+@import "./partials/icons.wxss";
+@import "./partials/home.wxss";
+@import "./partials/parsing.wxss";
+@import "./partials/result.wxss";
+@import "./partials/history.wxss";
+@import "./partials/profile.wxss";
+@import "./partials/membership.wxss";
+@import "./partials/viewer.wxss";
+
+/* 主题色变量：默认墨绿主题；换主题时由 js 拼同名变量串盖到根节点 style 上（内联优先级更高） */
+.app {
+  --bg: #0E3A2A;
+  --bg2: #0A2C20;
+  --accent: #2ECE7D;
+  --mint: #BFE9D2;
+  --cream: #F4F4F3;
+  --onAccent: #08291C;
+  --ink: #14241C;
+  --inkSoft: #5C6B63;
+  --line: rgba(20, 40, 28, .10);
+}
+/* 深浅两套 chrome：深色屏（首页/解析中/会员）导航区深底白字，浅色屏米白底深字 */
+.app--dark { --chromeInk: #FFFFFF; --navBg: var(--bg); }
+.app--light { --chromeInk: #16241D; --navBg: var(--cream); }
+
+/* ============ 顶部导航 ============ */
+.chrome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--navBg);
+  /* 底边补一条同色阴影，盖住导航和内容之间的亚像素缝 */
+  box-shadow: 0 3rpx 0 0 var(--navBg);
+}
+.nav { position: relative; display: flex; align-items: center; padding: 0 28rpx; }
+.nav-back {
+  position: relative;
+  z-index: 2;
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: -8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--chromeInk);
+}
+.nav-back-ic { width: 22rpx; height: 40rpx; }
+.nav-title-row { display: flex; align-items: center; gap: 16rpx; color: var(--chromeInk); }
+.nav-dot { width: 18rpx; height: 18rpx; border-radius: 50%; background: var(--accent); }
+.nav-title { font-size: 34rpx; font-weight: 800; letter-spacing: -.01em; }
+.nav-large { display: flex; flex-direction: column; justify-content: center; line-height: 1.12; color: var(--chromeInk); }
+.nav-large-title { font-size: 36rpx; font-weight: 900; letter-spacing: -.02em; }
+.nav-large-sub { font-size: 21rpx; color: #9AA39E; margin-top: 8rpx; }
+.nav-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 800;
+  color: var(--chromeInk);
+  pointer-events: none;
+}
+
+/* ============ 内容滚动区 ============ */
+.host { position: fixed; left: 0; right: 0; bottom: 0; background: var(--cream); }
+.app--dark .host { background: var(--bg); }
+
+/* ============ 悬浮胶囊 tab 栏 ============ */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 48rpx;
+  display: flex;
+  justify-content: center;
+  z-index: 40;
+  pointer-events: none;
+}
+.tabbar-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  border: 2rpx solid rgba(255, 255, 255, .55);
+  box-shadow: 0 32rpx 76rpx -24rpx rgba(0, 0, 0, .5), inset 0 2rpx 0 rgba(255, 255, 255, .7);
+}
+.tb-item {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 30rpx;
+  border-radius: 999rpx;
+  color: var(--ink);
+  transition: background-color .32s ease, color .32s ease, transform .12s ease;
+}
+.tb-item--on { background: var(--accent); color: var(--onAccent); }
+.tb-ic { width: 42rpx; height: 42rpx; }
+.tb-label {
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 26rpx;
+  font-weight: 800;
+  transition: max-width .34s cubic-bezier(.22, .61, .36, 1), opacity .26s ease, margin-left .34s cubic-bezier(.22, .61, .36, 1);
+}
+.tb-item--on .tb-label { max-width: 88rpx; opacity: 1; margin-left: 14rpx; }
+
+/* ============ 居中 toast ============ */
+.toast-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 48rpx;
+}
+.toast {
+  background: rgba(18, 24, 21, .94);
+  color: #fff;
+  padding: 24rpx 40rpx;
+  border-radius: 26rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  animation: scrIn .22s ease both;
+  max-width: 82%;
+  text-align: center;
+  box-shadow: 0 28rpx 64rpx -20rpx rgba(0, 0, 0, .5);
+}
+.toast-ic { width: 34rpx; height: 34rpx; color: var(--accent); }
